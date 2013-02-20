@@ -15,7 +15,8 @@ var get = function(url, params, successHandler) {
 	xhr.send();
 }
 
-var label = location.hash.replace(/^#/, "");
+var matches = location.search.match(/label=(.+)/);
+var label = matches ? decodeURIComponent(matches[1]) : "";
 
 get("http://ws.spotify.com/search/1/album.json", { q: "label:\"" + label + "\" year:2013"}, function() {
 	var data = JSON.parse(this.response);
