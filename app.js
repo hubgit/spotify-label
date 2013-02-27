@@ -18,9 +18,10 @@ var get = function(url, params, successHandler) {
 var matches = location.search.match(/label=(.+)/);
 var label = matches ? decodeURIComponent(matches[1]) : "";
 
-var year = (new Date()).getFullYear() - 1;
+var year = (new Date()).getFullYear();
+var years = year + "-" + (year - 3);
 
-get("http://ws.spotify.com/search/1/album.json", { q: "label:\"" + label + "\" year:" + year }, function() {
+get("http://ws.spotify.com/search/1/album.json", { q: "label:\"" + label + "\" year:" + years }, function() {
 	var data = JSON.parse(this.response);
 
 	var albums = document.createElement("div");
