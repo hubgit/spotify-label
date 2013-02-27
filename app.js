@@ -19,7 +19,7 @@ var matches = location.search.match(/label=(.+)/);
 var label = matches ? decodeURIComponent(matches[1]) : "";
 
 var year = (new Date()).getFullYear();
-var years = year + "-" + (year - 3);
+var years = (year - 3) + "-" + year;
 
 get("http://ws.spotify.com/search/1/album.json", { q: "label:\"" + label + "\" year:" + years }, function() {
 	var data = JSON.parse(this.response);
